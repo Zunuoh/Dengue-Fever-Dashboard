@@ -1,0 +1,37 @@
+    <h2 style="color: #00b4d8;">6-Month Dengue Fever Forecast</h2>
+
+<div class="container">
+  @if (nextSixMonths$(); as p) {
+    <p>
+      Current Month: <strong>{{ p.data.current_month }} {{ p.data.current_year }}</strong><br>
+      <!-- Prediction Date: <strong>{{ p.data.prediction_date  }}</strong> -->
+    </p>
+    <p>{{ p.data.message }}</p>
+    
+     <mat-accordion>
+      @for (pred of p.data.predictions; track pred.month + pred.year) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ pred.month }} {{ pred.year }}
+            </mat-panel-title>
+            <mat-panel-description>
+              Predicted: {{ pred.predicted_cases }} cases
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          
+          <div class="details">
+            <p><b>Raw Prediction:</b> {{ pred.raw_prediction }}</p>
+            <h4>Weather Conditions</h4>
+            <ul>
+              <li><b>Avg Temp:</b> {{ pred.weather_conditions.avg_temp_c }} °C</li>
+              <li><b>Precipitation:</b> {{ pred.weather_conditions.precipitation_mm }} mm</li>
+              <li><b>UV Index:</b> {{ pred.weather_conditions.uv_index }}</li>
+              <li><b>Air Quality Index:</b> {{ pred.weather_conditions.air_quality_index }}</li>
+            </ul>
+          </div>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  }
+</div>
