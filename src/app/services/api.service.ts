@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HeaderInfo, PredictNextMonth, FactorsAffectingRegions, CasesPerRegion, TopFiveCountries, TopFiveRegions, MakePredictions, PredictSixMonths } from "../models/monthly-predictions-model";
 
@@ -8,10 +8,7 @@ import { HeaderInfo, PredictNextMonth, FactorsAffectingRegions, CasesPerRegion, 
 })
 
 export class ApiService {
-    
-    constructor(
-        private http: HttpClient
-    ) {}
+    private http = inject(HttpClient)
 
     public BASE_URL = `https://dengue-fever-prediction-apis.onrender.com`
 
@@ -41,16 +38,18 @@ export class ApiService {
     }
 
     
-    makePredictions(): Observable<MakePredictions>{
-        const payload = {
-            country: "Ghana",
-            avg_temp_c: 35.7,
-            precipitation_mm: 100.2,
-            air_quality_index: 70,
-            uv_index: 50,
-            population_density: 20,
-            target_date: 2029-10-29
-        }
-        return this.http.post<MakePredictions>(`${this.BASE_URL}/predict`, {payload});
-    }
+makePredictions(
+  payload: {
+  country: string;
+  avg_temp_c: number;
+  precipitation_mm: number;
+  air_quality_index: number;
+  uv_index: number;
+  population_density: number;
+  target_date?: Date | string;
+}
+): Observable<MakePredictions> {
+  return this.http.post<MakePredictions>(`${this.BASE_URL}/predict`, payload);
+}
+
 }

@@ -78,7 +78,6 @@ export const dengueMethods = signalStoreFeature(
         getPredictionForNextSixMonths: rxMethod<void>(
             pipe(
                 tap(() => {
-                    console.log
                     patchState(store, {
                     })
                 }),
@@ -93,6 +92,33 @@ export const dengueMethods = signalStoreFeature(
             )
         ),
         ),
+        getPrediction: rxMethod<{
+            country: string,
+            avg_temp_c: number,
+            precipitation_mm: number,   
+            air_quality_index: number,
+            uv_index: number,
+            population_density: number,
+            target_date?: Date | string
+        }>(
+            pipe(
+                tap(() => {
+                    patchState(store)
+                }),
+                exhaustMap((payload) => {
+                    console.log('payload in store method', payload)
+                    return apiService.makePredictions(payload).pipe(
+                    tap((response) => {
+                        patchState(store, {
+                            makePredictions: response
+                        })
+                    })
+                )
+                }
+                    
+            )
+            )
+        )
         
         
 

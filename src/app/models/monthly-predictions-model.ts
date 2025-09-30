@@ -49,7 +49,7 @@ export type MakePredictions = {
   air_quality_index: number,
   uv_index: number,
   population_density: number,
-  target_date?: Date
+  target_date: Date | string
 }
 
 export type PredictSixMonths = {

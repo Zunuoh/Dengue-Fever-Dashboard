@@ -1,5 +1,5 @@
 <h1 style="color: #00b4d8;">Make Predictions</h1>
-<div class="create-course-panel">
+<div class="create-course-panel" [formGroup]="form" style="margin-top: 20px;">
     <div style="display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold; color: #00b4d8;">Test the Future, Shape the Response!</div>
     <p style="display: flex; justify-content: center; align-items: center;">Enter expected environmental values to explore how different conditions could impact dengue trends.</p>
 
@@ -18,28 +18,33 @@
   " class="mat-elevation-z5">
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 15px;">
       <mat-label>Temperature</mat-label>
-      <input matInput placeholder="Enter temperature in °C">
+      <input matInput placeholder="Enter temperature in °C" formControlName="temperature">
     </mat-form-field>
 
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 15px;">
       <mat-label>Precipitation</mat-label>
-      <input matInput placeholder="Enter precipitation in mm">
+      <input matInput placeholder="Enter precipitation in mm" formControlName="precipitation">
     </mat-form-field>
 
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 15px;">
       <mat-label>Air Quality Index</mat-label>
-      <input matInput placeholder="Air Quality Index">
+      <input matInput placeholder="Air Quality Index" formControlName="airQuality">
+    </mat-form-field>
+
+     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 15px;">
+      <mat-label>Country</mat-label>
+      <input matInput placeholder="Country" formControlName="country">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
   <mat-label>Choose a date</mat-label>
-  <input matInput [matDatepicker]="picker">
+  <input matInput [matDatepicker]="picker" formControlName="targetDate">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
 
 
-    <button mat-raised-button color="primary" (click)="navigateToSuccess()">
+    <button mat-raised-button color="primary" (click)="success()">
                     Predict</button>
                     
   </div>
