@@ -2,17 +2,18 @@
 
 <div class="container">
   @if (nextSixMonths$(); as p) {
-    <p>
-      Current Month: <strong>{{ p.data.current_month }} {{ p.data.current_year }}</strong><br>
-      <!-- Prediction Date: <strong>{{ p.data.prediction_date  }}</strong> -->
+    <p>Current Month: <strong>{{ p.data.current_month }} {{ p.data.current_year }}</strong></p>
+    <p>Prediction Date: <strong>{{ p.data.prediction_date  }}</strong>
     </p>
     <p>{{ p.data.message }}</p>
-    
+
      <mat-accordion>
       @for (pred of p.data.predictions; track pred.month + pred.year) {
         <mat-expansion-panel>
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header style="padding: 10px 30px 10px 30px; background-color: #d9eef2;">
             <mat-panel-title>
+              <mat-icon style="margin-right: 10px;"
+             >access_time</mat-icon>
               {{ pred.month }} {{ pred.year }}
             </mat-panel-title>
             <mat-panel-description>
@@ -21,12 +22,11 @@
           </mat-expansion-panel-header>
           
           <div class="details">
-            <p><b>Raw Prediction:</b> {{ pred.raw_prediction }}</p>
             <h4>Weather Conditions</h4>
             <ul>
               <li><b>Avg Temp:</b> {{ pred.weather_conditions.avg_temp_c }} °C</li>
               <li><b>Precipitation:</b> {{ pred.weather_conditions.precipitation_mm }} mm</li>
-              <li><b>UV Index:</b> {{ pred.weather_conditions.uv_index }}</li>
+              <li><b>Population Density:</b> {{ pred.weather_conditions.population_density }}</li>
               <li><b>Air Quality Index:</b> {{ pred.weather_conditions.air_quality_index }}</li>
             </ul>
           </div>

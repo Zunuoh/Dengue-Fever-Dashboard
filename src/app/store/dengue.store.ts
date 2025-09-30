@@ -56,7 +56,7 @@ export function createInitialState(): DengueState {
                 air_quality_index: 0,
                 avg_temp_c: 0,
                 precipitation_mm: 0,
-                uv_index: 0
+                population_density: 0
                 },
                 year: ""
     }

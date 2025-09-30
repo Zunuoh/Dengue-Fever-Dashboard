@@ -1,5 +1,5 @@
 <h1 style="color: #00b4d8;">Make Predictions</h1>
-<div class="create-course-panel" [formGroup]="form" style="margin-top: 20px;">
+<div class="create-course-panel" >
     <div style="display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold; color: #00b4d8;">Test the Future, Shape the Response!</div>
     <p style="display: flex; justify-content: center; align-items: center;">Enter expected environmental values to explore how different conditions could impact dengue trends.</p>
 
@@ -7,14 +7,14 @@
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  background-color: #f9f9f9;
   margin-top: 20px;
-">
+" [formGroup]="form">
   <div style="
     border: 1px solid #ccc; 
     border-radius: 5px; 
-    padding: 30px; 
+    padding: 10px; 
     width: 400px;
+    margin-bottom: 50px;
   " class="mat-elevation-z5">
     <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 15px;">
       <mat-label>Temperature</mat-label>
@@ -44,7 +44,7 @@
 </mat-form-field>
 
 
-    <button mat-raised-button color="primary" (click)="success()">
+    <button mat-raised-button style="background-color: #00b4d8; border-radius: 10px;" (click)="success()">
                     Predict</button>
                     
   </div>

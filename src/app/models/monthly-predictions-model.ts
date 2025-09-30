@@ -70,7 +70,7 @@ export type PredictSixMonths = {
         air_quality_index: number,
         avg_temp_c: number,
         precipitation_mm: number,
-        uv_index: number
+        population_density: number
       },
       year: string
     }>
