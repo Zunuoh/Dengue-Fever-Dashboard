@@ -1,20 +1,13 @@
 import { Component, effect, inject, OnInit, Signal} from '@angular/core';
-import { WidgetComponent } from "../../components/widget/widget.component";
-// import { DashboardService } from '../../services/dashboard-service.service';
 import {Chart, registerables} from 'chart.js';
-// import { DengueStore } from '../../store/dengue.store';
-import { HttpClient } from '@angular/common/http';
 import { DashboardService } from '../../services/dashboard-service.service';
 import { DengueStore } from '../../store/dengue.store';
 import { ApiService } from '../../services/api.service';
 import { PredictNextMonth } from '../../models/monthly-predictions-model';
-// import { PredictNextMonth } from '../../models/monthly-predictions-model';
-// import { ApiService } from '../../services/api.service';
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  // imports: [WidgetComponent],
   providers: [DashboardService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

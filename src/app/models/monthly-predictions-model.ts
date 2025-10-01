@@ -58,7 +58,7 @@ export type PredictSixMonths = {
     current_year: string,
     message: string,
     prediction_date: string,
-    predictions: Array<{  // Use Array<> instead of []
+    predictions: Array<{  
       confidence: string,
       data_source: string,
       month: string,
