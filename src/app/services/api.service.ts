@@ -13,7 +13,7 @@ export class ApiService {
     public BASE_URL = `https://dengue-fever-prediction-apis.onrender.com`
 
     getPredictionsForNextMonth(): Observable<HeaderInfo<PredictNextMonth>>{
-        return this.http.get<HeaderInfo<PredictNextMonth>>(`${this.BASE_URL}/predict-next-month-enhanced`, {});
+        return this.http.get<HeaderInfo<PredictNextMonth>>(`${this.BASE_URL}/predict_next_month`, {});
     }   
 
     getRegionFactors(): Observable<HeaderInfo<FactorsAffectingRegions[]>>{
@@ -21,7 +21,7 @@ export class ApiService {
     }
 
     getCasesPerRegion(): Observable<CasesPerRegion>{
-        return this.http.get<CasesPerRegion>(`${this.BASE_URL}/region-cases`, {});
+        return this.http.get<CasesPerRegion>(`${this.BASE_URL}/region_cases`, {});
 
     }
 
@@ -34,7 +34,7 @@ export class ApiService {
     }
 
     predictNextSixMonths(): Observable<PredictSixMonths>{
-        return this.http.get<PredictSixMonths>(`${this.BASE_URL}/predict-next-6-months`, {});
+        return this.http.get<PredictSixMonths>(`${this.BASE_URL}/predict_next_six_months`, {});
     }
 
     
