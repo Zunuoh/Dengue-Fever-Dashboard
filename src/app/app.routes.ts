@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { MakePredictionsComponent } from './pages/make-predictions/make-predictions.component';
 import { PredictNextSixMonthsComponent } from './pages/predict-next-six-months/predict-next-six-months.component';
+import { HeatMapComponent } from './pages/heat-map/heat-map.component';
 
 
 export const routes: Routes = [
@@ -30,7 +31,7 @@ export const routes: Routes = [
     },
     {
         path: 'heat-map',
-        component: PredictNextSixMonthsComponent,
+        component: HeatMapComponent,
     },
 
 ];
