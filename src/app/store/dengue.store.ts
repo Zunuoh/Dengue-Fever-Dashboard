@@ -1,4 +1,4 @@
-import { FactorsAffectingRegions, MakePredictions, PredictNextMonth, PredictSixMonths, TopFiveCountries, TopFiveRegions } from "../models/monthly-predictions-model";
+import { FactorsAffectingRegions, HeatMapData, MakePredictions, PredictNextMonth, PredictSixMonths, TopFiveCountries, TopFiveRegions } from "../models/monthly-predictions-model";
 import { signalStore, withState } from "@ngrx/signals";
 import { dengueMethods } from "./dengue.methods";
 
@@ -8,7 +8,8 @@ export type DengueState = {
     topFiveAffectedCountries: TopFiveCountries;
     topFiveAffectedRegions: TopFiveRegions;
     predictNextSixMonths: PredictSixMonths;
-    makePredictions: MakePredictions
+    makePredictions: MakePredictions;
+    heatMapData: HeatMapData
 }
 
 export function createInitialState(): DengueState {
@@ -72,7 +73,18 @@ export function createInitialState(): DengueState {
         uv_index: 0,
         population_density: 0,
         target_date: ""
-       }
+       },
+       heatMapData:{
+        heatmap_points: [
+            {
+                country: "",
+                intensity: 0,
+                lat: 0,
+                lng: 0
+            }
+        ]
+            
+        }
     }
 
 }

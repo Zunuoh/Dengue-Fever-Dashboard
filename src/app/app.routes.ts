@@ -28,5 +28,9 @@ export const routes: Routes = [
         path: 'six-month-predictions',
         component: PredictNextSixMonthsComponent,
     },
+    {
+        path: 'heat-map',
+        component: PredictNextSixMonthsComponent,
+    },
 
 ];

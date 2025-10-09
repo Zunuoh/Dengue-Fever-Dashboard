@@ -44,6 +44,11 @@ profileImageSize = computed(() => this.sideNavCollapsed() ? '32' : '100')
     icon: 'calendar_today',
     label: 'Six Month Predictions',
     route: 'six-month-predictions'
+  },
+  {  
+    icon: 'calendar_today',
+    label: 'Heat Map',
+    route: 'heat-map'
   }
  ])
 }

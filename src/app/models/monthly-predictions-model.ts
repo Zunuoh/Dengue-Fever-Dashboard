@@ -77,9 +77,20 @@ export type PredictSixMonths = {
   }
 }
 
-    
+export type HeatMapData = {
+  heatmap_points: [
+    {
+      country: string,
+      intensity: number,
+      lat: number,
+      lng: number
+    }
+  ]
+}
 
 
 export type PredictSixMonthsResponse = HeaderInfo<PredictNextMonth>
 
 export type RegionFactorsResponse = HeaderInfo<FactorsAffectingRegions[]>
+
+export type HeatMapDataResponse =  HeaderInfo<HeatMapData>

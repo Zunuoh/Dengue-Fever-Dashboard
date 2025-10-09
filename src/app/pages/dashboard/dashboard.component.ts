@@ -4,18 +4,25 @@ import { DashboardService } from '../../services/dashboard-service.service';
 import { DengueStore } from '../../store/dengue.store';
 import { ApiService } from '../../services/api.service';
 import { PredictNextMonth } from '../../models/monthly-predictions-model';
+import { GoogleMapsModule } from '@angular/google-maps';
 Chart.register(...registerables);
+
+declare const google: any;
 
 @Component({
   selector: 'app-dashboard',
   providers: [DashboardService],
+  imports: [GoogleMapsModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit{
+  map!: google.maps.Map;
+  heatmap!: google.maps.visualization.HeatmapLayer;
   dengueStore = inject(DengueStore);
   dashboardService = inject(DashboardService);
   apiService = inject(ApiService)
+
 
   chartData: any;
   labelData: any[] = [];
@@ -31,14 +38,12 @@ export class DashboardComponent implements OnInit{
     this.dengueStore.getTopFiveAffectedCountries();
     this.dengueStore.getTopFiveAffectedRegions();
     this.dengueStore.getPredictionForNextSixMonths();
+    this.dengueStore.getHeatMapData();
 
     this.apiService.getCasesPerRegion().subscribe((response) => {
-      console.log('chart res', response)
       this.chartData = response;
-      console.log('chart data', this.chartData);
       if(this.chartData != null){
         for(let i=0; i<this.chartData.length; i++){
-          // console.log(this.chartData[i]);
           this.labelData.push(this.chartData[i].Region);
           this.realData.push(this.chartData[i].Total_Cases);
         }
@@ -46,31 +51,51 @@ export class DashboardComponent implements OnInit{
     })
   }
 
-  
+  ngAfterViewInit(): void {
+    // Initialize map
+    const mapOptions: google.maps.MapOptions = {
+      center: { lat: 10, lng: 10 },
+      zoom: 2,
+      mapTypeId: 'roadmap'
+    };
+    this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, mapOptions);
+
+    // Load heatmap data
+    this.loadHeatmap();
+  }
+
+   loadHeatmap() {
+    this.apiService.getHeatMapData().subscribe((res) => {
+      console.log('heatmap data', res);
+      const points = res.data.heatmap_points.map((p: any) => ({
+        location: new google.maps.LatLng(p.lat, p.lng),
+        weight: p.intensity
+      }));
+
+      this.heatmap = new google.maps.visualization.HeatmapLayer({
+        data: points,
+        map: this.map
+      });
+
+      this.heatmap.set('radius', 30);
+      this.heatmap.set('opacity', 0.7);
+    });
+  }
 
   constructor(){
     this.dengueMonthlyPredictions$ = this.dengueStore.nextMonthPrediction;
     this.topFiveAffectedCountries$ = this.dengueStore.topFiveAffectedCountries;
     this.topFiveAffectedRegions$ = this.dengueStore.topFiveAffectedRegions;
     this.nextSixMonths$ = this.dengueStore.predictNextSixMonths
-    
-    effect(() => {
-      console.log('Next month prediction', this.nextSixMonths$());
-      // console.log('Top five affected countries', this.topFiveAffectedRegions$);
-    })
   }
+
   renderChart(labelData: any, mainData: any){
-    // colours: move from yellow to red based on lowest to highest
-      // 1️⃣ Find min and max for scaling
   const min = Math.min(...mainData);
   const max = Math.max(...mainData);
 
-  // 2️⃣ Create a color for each value: low = yellow, high = red
   const colors = mainData.map((value:number) => {
-    // ratio 0 → 1
     const ratio = max === min ? 0 : (value - min) / (max - min);
-    // Interpolate from yellow (255, 255, 0) to red (255, 0, 0)
-    const g = Math.round(255 * (1 - ratio)); // green decreases as value rises
+    const g = Math.round(255 * (1 - ratio)); 
     return `rgb(255, ${g}, 0)`;
   });
   

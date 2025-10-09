@@ -13,7 +13,6 @@ export const dengueMethods = signalStoreFeature(
                 tap(() => patchState(store)),
                 exhaustMap(() => apiService.getPredictionsForNextMonth().pipe(
                     tap((response) => {
-                        // console.log(response)
                         patchState(store, {
                             nextMonthPrediction: response.data
                         })
@@ -118,7 +117,24 @@ export const dengueMethods = signalStoreFeature(
                     
             )
             )
-        )
+        ),
+        getHeatMapData: rxMethod<void>(
+            pipe(
+                tap(() => {
+                    patchState(store, {
+                    })
+                }),
+                exhaustMap(() => apiService.getHeatMapData().pipe(
+                    tap((response) => {
+                        console.log(response)
+                        patchState(store, {
+                            heatMapData: response.data
+                        })
+                    })
+                )
+            )
+        ),
+        ),
         
         
 

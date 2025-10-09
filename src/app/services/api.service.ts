@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HeaderInfo, PredictNextMonth, FactorsAffectingRegions, CasesPerRegion, TopFiveCountries, TopFiveRegions, MakePredictions, PredictSixMonths } from "../models/monthly-predictions-model";
+import { HeaderInfo, PredictNextMonth, FactorsAffectingRegions, CasesPerRegion, TopFiveCountries, TopFiveRegions, MakePredictions, PredictSixMonths, HeatMapData } from "../models/monthly-predictions-model";
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +22,6 @@ export class ApiService {
 
     getCasesPerRegion(): Observable<CasesPerRegion>{
         return this.http.get<CasesPerRegion>(`${this.BASE_URL}/region_cases`, {});
-
     }
 
     getTopFiveAffectedCountries(): Observable<TopFiveCountries>{
@@ -35,6 +34,10 @@ export class ApiService {
 
     predictNextSixMonths(): Observable<PredictSixMonths>{
         return this.http.get<PredictSixMonths>(`${this.BASE_URL}/predict_next_six_months`, {});
+    }
+
+    getHeatMapData(): Observable<HeaderInfo<HeatMapData>>{
+        return this.http.get<HeaderInfo<HeatMapData>>(`${this.BASE_URL}/heatmap-data`)
     }
 
     
