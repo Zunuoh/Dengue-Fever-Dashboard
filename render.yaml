@@ -1,4 +1,4 @@
-staticPublishPath: dist/dengue-v2
+staticPublishPath: dist/dengue_fever_dashboard
 routes:
   - type: rewrite
     source: /*
