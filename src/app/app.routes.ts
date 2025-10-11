@@ -1,9 +1,4 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { MakePredictionsComponent } from './pages/make-predictions/make-predictions.component';
-import { PredictNextSixMonthsComponent } from './pages/predict-next-six-months/predict-next-six-months.component';
-import { HeatMapComponent } from './pages/heat-map/heat-map.component';
-
 
 export const routes: Routes = [
     {
@@ -13,19 +8,19 @@ export const routes: Routes = [
     },
     {
         path: 'dashboard',
-        component: DashboardComponent,
+        loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
     },
     {
         path: 'make-predictions',
-        component: MakePredictionsComponent,
+        loadComponent: () => import('./pages/make-predictions/make-predictions.component').then(m => m.MakePredictionsComponent)
     },
     {
         path: 'six-month-predictions',
-        component: PredictNextSixMonthsComponent,
+        loadComponent: () => import('./pages/predict-next-six-months/predict-next-six-months.component').then(m => m.PredictNextSixMonthsComponent),
     },
     {
         path: 'heat-map',
-        component: HeatMapComponent,
+        loadComponent: () => import('./pages/heat-map/heat-map.component').then(m => m.HeatMapComponent),
     },
 
 ];
