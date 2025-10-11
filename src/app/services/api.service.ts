@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { HeaderInfo, PredictNextMonth, FactorsAffectingRegions, CasesPerRegion, TopFiveCountries, TopFiveRegions, MakePredictions, PredictSixMonths, HeatMapData } from "../models/monthly-predictions-model";
+import { HeaderInfo, PredictNextMonth, FactorsAffectingRegions, CasesPerRegion, TopFiveCountries, TopFiveRegions, MakePredictions, PredictSixMonths, HeatMapData, MakePredictionsResponse } from "../models/monthly-predictions-model";
 
 @Injectable({
     providedIn: 'root'
@@ -51,8 +51,8 @@ makePredictions(
   population_density: number;
   target_date?: Date | string;
 }
-): Observable<MakePredictions> {
-  return this.http.post<MakePredictions>(`${this.BASE_URL}/predict`, payload);
+): Observable<MakePredictionsResponse> {
+  return this.http.post<MakePredictionsResponse>(`${this.BASE_URL}/predict`, payload);
 }
 
 }

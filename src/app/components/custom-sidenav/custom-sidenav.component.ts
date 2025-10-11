@@ -25,16 +25,6 @@ profileImageSize = computed(() => this.sideNavCollapsed() ? '32' : '100')
     label: 'Dashboard',
     route: 'dashboard'
   },
-  // {  
-  //   icon: 'analytics',
-  //   label: 'Analytics',
-  //   route: 'analytics'
-  // },
-  // {  
-  //   icon: 'location-on',
-  //   label: 'Analytics',
-  //   route: 'analytics'
-  // },
   {  
     icon: 'analytics',
     label: 'Make Predictions',

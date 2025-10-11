@@ -52,6 +52,12 @@ export type MakePredictions = {
   target_date: Date | string
 }
 
+export type MakePredictionsResponse = {
+  predicted_cases: number,
+  target_date: string
+}
+
+
 export type PredictSixMonths = {
   data: {
     current_month: string,

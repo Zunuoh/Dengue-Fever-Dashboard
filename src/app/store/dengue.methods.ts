@@ -1,7 +1,7 @@
 import { patchState, signalStoreFeature, type, withMethods } from "@ngrx/signals"
 import { DengueState } from "./dengue.store"
 import {rxMethod} from '@ngrx/signals/rxjs-interop'
-import { exhaustMap, pipe, tap } from "rxjs"
+import { catchError, exhaustMap, map, pipe, tap, throwError } from "rxjs"
 import { ApiService } from "../services/api.service"
 import { inject } from "@angular/core"
 
@@ -101,22 +101,21 @@ export const dengueMethods = signalStoreFeature(
             target_date?: Date | string
         }>(
             pipe(
-                tap(() => {
-                    patchState(store)
-                }),
-                exhaustMap((payload) => {
-                    console.log('payload in store method', payload)
-                    return apiService.makePredictions(payload).pipe(
-                    tap((response) => {
-                        patchState(store, {
-                            makePredictions: response
-                        })
-                    })
-                )
-                }
-                    
-            )
-            )
+    tap(() => patchState(store, { loading: true })),
+    exhaustMap((payload) =>
+      apiService.makePredictions(payload).pipe(
+        tap((response) => {
+          patchState(store, { MakePredictionsResponse: response, loading: false });
+        }),
+        catchError((error) => {
+          patchState(store, { loading: false });
+          console.error('Prediction failed', error);
+          return throwError(() => error);
+        }),
+        map((response) => response)
+      )
+    )
+  )
         ),
         getHeatMapData: rxMethod<void>(
             pipe(

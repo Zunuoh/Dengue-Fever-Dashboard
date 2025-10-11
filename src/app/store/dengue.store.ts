@@ -1,6 +1,7 @@
-import { FactorsAffectingRegions, HeatMapData, MakePredictions, PredictNextMonth, PredictSixMonths, TopFiveCountries, TopFiveRegions } from "../models/monthly-predictions-model";
-import { signalStore, withState } from "@ngrx/signals";
+import { FactorsAffectingRegions, HeatMapData, MakePredictions, MakePredictionsResponse, PredictNextMonth, PredictSixMonths, TopFiveCountries, TopFiveRegions } from "../models/monthly-predictions-model";
+import { signalStore, withState, withComputed } from "@ngrx/signals";
 import { dengueMethods } from "./dengue.methods";
+import { computed } from "@angular/core";
 
 export type DengueState = {
     nextMonthPrediction: PredictNextMonth;
@@ -9,7 +10,9 @@ export type DengueState = {
     topFiveAffectedRegions: TopFiveRegions;
     predictNextSixMonths: PredictSixMonths;
     makePredictions: MakePredictions;
-    heatMapData: HeatMapData
+    heatMapData: HeatMapData;
+    loading: boolean;
+    MakePredictionsResponse: MakePredictionsResponse;
 }
 
 export function createInitialState(): DengueState {
@@ -84,6 +87,11 @@ export function createInitialState(): DengueState {
             }
         ]
             
+        },
+        loading: false,
+        MakePredictionsResponse: {
+          predicted_cases: 0,
+          target_date: ""
         }
     }
 
@@ -92,5 +100,9 @@ export function createInitialState(): DengueState {
 
 export const DengueStore = signalStore({providedIn: 'root'}, 
     withState(createInitialState()),
-    dengueMethods
+    dengueMethods,
+    withComputed((store) => ({
+    // Computed signals for easier access
+    predictions: computed(() => store.makePredictions()),
+  }))
 )

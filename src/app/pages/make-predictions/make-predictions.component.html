@@ -46,6 +46,24 @@
 
     <button mat-raised-button style="background-color: #00b4d8; border-radius: 10px;" (click)="success()">
                     Predict</button>
+
+  <!-- <div class="predict-button-container">
+<button mat-flat-button color="primary" (click)="success()" [disabled]="loading">
+  @if (!loading) {
+    <ng-container>
+      Predict
+    </ng-container>
+  } @else {
+    <mat-progress-spinner
+      diameter="20"
+      mode="indeterminate"
+      color="accent">
+    </mat-progress-spinner>
+  }
+</button>
+
+</div> -->
+
                     
   </div>
 </div>

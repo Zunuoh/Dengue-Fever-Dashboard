@@ -32,3 +32,14 @@ body {
         height: 0px;
     }
 }
+
+
+a.mat-list-item.active-link {
+  background-color: #e3f2fd; /* light blue highlight */
+  color: #1976d2; /* primary color */
+  border-radius: 8px;
+}
+
+a.mat-list-item.active-link mat-icon {
+  color: #1976d2;
+}
