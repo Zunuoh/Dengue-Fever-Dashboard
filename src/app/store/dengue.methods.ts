@@ -109,7 +109,6 @@ export const dengueMethods = signalStoreFeature(
         }),
         catchError((error) => {
           patchState(store, { loading: false });
-          console.error('Prediction failed', error);
           return throwError(() => error);
         }),
         map((response) => response)
@@ -125,7 +124,6 @@ export const dengueMethods = signalStoreFeature(
                 }),
                 exhaustMap(() => apiService.getHeatMapData().pipe(
                     tap((response) => {
-                        console.log(response)
                         patchState(store, {
                             heatMapData: response.data
                         })

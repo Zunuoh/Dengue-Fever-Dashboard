@@ -18,10 +18,10 @@
         <div style="font-weight: bold; color: #00b4d8">Predicted Monthly Results</div>
         <div class="monthly-card-container">
             <div style="color: #344e41;">
-                Current Month:
+                Year:
             </div>
             <div style="margin-left: 20px;">
-                {{ dengueMonthlyPredictions$().current_month }}
+                {{ dengueMonthlyPredictions$().year }}
             </div>
         </div>
 
@@ -45,10 +45,10 @@
 
         <div class="monthly-card-container">
             <div>
-                Message:
+                Raw Prediction:
             </div>
             <div style="margin-left: 20px;">
-                {{ dengueMonthlyPredictions$().message }}
+                {{ dengueMonthlyPredictions$().raw_prediction }}
             </div>
         </div>
 
@@ -85,10 +85,6 @@
                 }
             </div>
         </div>
-
-
-
-
 
     </div>
 

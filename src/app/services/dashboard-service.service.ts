@@ -13,24 +13,6 @@ export class DashboardService {
           value: '99',
           content: CountriesComponent
       },
-    //   {
-    //       id: 2,
-    //       label: 'Predicted Cases For Next Month',
-    //       value: '103',
-    //       content: ViewsComponent
-    //   },
-    //   {
-    //       id: 3,
-    //       label: 'High Risk Regions',
-    //       value: '1,024',
-    //       content: ViewsComponent
-    //   },
-    //   {
-    //       id: 4,
-    //       label: 'Views',
-    //       value: '1,024',
-    //       content: ViewsComponent
-    //   },
   ])
    
 

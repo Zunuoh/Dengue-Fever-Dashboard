@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, Signal} from '@angular/core';
+import { Component, inject, OnInit, Signal} from '@angular/core';
 import {Chart, registerables} from 'chart.js';
 import { DashboardService } from '../../services/dashboard-service.service';
 import { DengueStore } from '../../store/dengue.store';

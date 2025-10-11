@@ -5,12 +5,23 @@
 </div>
 <mat-nav-list>
     @for (item of menuItems(); track item){
-        <a mat-list-item [routerLink]="item.route" routerLinkActive #rla="routerLinkActive" [activated]="rla.isActive" style="margin-top: 10px;">
+        <div
+      routerLinkActive="active-link"
+      #rla="routerLinkActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+        <a 
+mat-list-item
+        [routerLink]="item.route"
+        [class.active-link]="rla.isActive"
+        style="margin-top: 10px;"
+>
             <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
             @if(!sideNavCollapsed()){
             <span matListItemTitle>{{item.label}}</span>
             }
         </a>
+    </div>
 
     }
 </mat-nav-list>

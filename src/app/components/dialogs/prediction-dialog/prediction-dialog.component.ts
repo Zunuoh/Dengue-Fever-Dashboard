@@ -13,7 +13,6 @@ constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<PredictionDialogComponent>
   ) {
-    console.log('data in dialog', data)
   }
 
   close() {

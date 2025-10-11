@@ -101,8 +101,4 @@ export function createInitialState(): DengueState {
 export const DengueStore = signalStore({providedIn: 'root'}, 
     withState(createInitialState()),
     dengueMethods,
-    withComputed((store) => ({
-    // Computed signals for easier access
-    predictions: computed(() => store.makePredictions()),
-  }))
 )

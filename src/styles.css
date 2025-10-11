@@ -14,3 +14,14 @@ p, span, div {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
+
+a.mat-list-item.active-link {
+  background-color: #e3f2fd !important; /* light blue highlight */
+  color: #1976d2 !important;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+a.mat-list-item.active-link mat-icon {
+  color: #1976d2 !important;
+}

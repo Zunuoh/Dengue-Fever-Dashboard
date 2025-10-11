@@ -22,7 +22,6 @@ export class HeatMapComponent {
   }
 
    ngAfterViewInit(): void {
-    // Initialize map
     const mapOptions: google.maps.MapOptions = {
       center: { lat: 10, lng: 10 },
       zoom: 2,
@@ -30,7 +29,6 @@ export class HeatMapComponent {
     };
     this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, mapOptions);
 
-    // Load heatmap data
     this.loadHeatmap();
   }
 
