@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dengue_v2": {
+    "dengue_fever_dashboard": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/dengue_v2",
+            "outputPath": "dist/dengue_fever_dashboard",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "dengue_v2:build:production"
+              "buildTarget": "dengue_fever_dashboard:build:production"
             },
             "development": {
-              "buildTarget": "dengue_v2:build:development"
+              "buildTarget": "dengue_fever_dashboard:build:development"
             }
           },
           "defaultConfiguration": "development"
