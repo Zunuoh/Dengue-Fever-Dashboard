@@ -39,6 +39,11 @@ profileImageSize = computed(() => this.sideNavCollapsed() ? '32' : '100')
     icon: 'map',
     label: 'Heat Map',
     route: 'heat-map'
+  },
+  {  
+    icon: 'map',
+    label: 'Prevention Tips',
+    route: 'prevention-tips'
   }
  ])
 }

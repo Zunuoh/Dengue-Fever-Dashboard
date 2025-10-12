@@ -94,6 +94,15 @@ export type HeatMapData = {
   ]
 }
 
+export interface TipSection {
+  id: string;
+  title: string;
+  summary: string;
+  bullets: string[];
+  icon?: string;
+}
+
+
 
 export type PredictSixMonthsResponse = HeaderInfo<PredictNextMonth>
 

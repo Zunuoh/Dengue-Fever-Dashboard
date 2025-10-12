@@ -22,5 +22,9 @@ export const routes: Routes = [
         path: 'heat-map',
         loadComponent: () => import('./pages/heat-map/heat-map.component').then(m => m.HeatMapComponent),
     },
+    {
+        path: 'prevention-tips',
+        loadComponent: () => import('./pages/prevention-tips/prevention-tips.component').then(m => m.PreventionTipsComponent),
+    },
 
 ];

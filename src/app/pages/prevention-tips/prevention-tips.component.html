@@ -1,0 +1,58 @@
+<main class="container">
+  <section class="hero">
+    <div class="hero-content">
+      <h1 style="color: #00b4d8">Dengue Prevention Tips</h1>
+      <p class="lead">Practical, evidence-based steps you and your community can take to reduce dengue risk.</p>
+    </div>
+
+    <mat-card class="poster-card" aria-labelledby="poster-title">
+      <mat-card-content>
+        <h2 id="poster-title" style="color: #00b4d8">{{ posterSummary.title }}</h2>
+        <p class="poster-sub">{{ posterSummary.subtitle }}</p>
+        <ul>
+            @for (item of posterSummary.bullets; track $index) {
+                <li>{{ item }}</li>
+            }
+          
+        </ul>
+        <p class="poster-footer">{{ posterSummary.footer }}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section class="tips">
+    <h2 style="color: #00b4d8">Detailed Guidance</h2>
+
+    <mat-accordion multi>
+        @for(s of tipSections; track $index) {
+              <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon aria-hidden="false">{{ s.icon || 'info' }}</mat-icon>
+            <span class="panel-title-text" style="margin-left: 10px;">{{ s.title }}</span>
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ s.summary }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="panel-body">
+          <p class="summary">{{ s.summary }}</p>
+          <mat-list>
+            @for(b of s.bullets; track $index) {
+            <mat-list-item>
+                <div style="display: flex;">
+                     <mat-icon matListIcon>check_circle</mat-icon>
+              <div matLine style="margin-left: 10px;">{{ b }}</div>
+                </div>
+             
+            </mat-list-item>
+            }
+          </mat-list>
+        </div>
+      </mat-expansion-panel>
+        }
+    
+    </mat-accordion>
+  </section>
+</main>
