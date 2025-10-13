@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, Signal} from '@angular/core';
+import { Component, computed, inject, OnInit, Signal} from '@angular/core';
 import {Chart, registerables} from 'chart.js';
 import { DashboardService } from '../../services/dashboard-service.service';
 import { DengueStore } from '../../store/dengue.store';
 import { ApiService } from '../../services/api.service';
 import { PredictNextMonth } from '../../models/monthly-predictions-model';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 Chart.register(...registerables);
 
 declare const google: any;
@@ -12,11 +13,12 @@ declare const google: any;
 @Component({
   selector: 'app-dashboard',
   providers: [DashboardService],
-  imports: [GoogleMapsModule],
+  imports: [GoogleMapsModule, MatProgressSpinnerModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit{
+  loading = computed(() => this.dengueStore.loading());
   dengueStore = inject(DengueStore);
   dashboardService = inject(DashboardService);
   apiService = inject(ApiService)

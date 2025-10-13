@@ -14,7 +14,8 @@
 </div>
 
 <div style="display: flex; flex-direction: row; margin-top: 20px;">
-    <div class="widget-container" style="margin-top: 20px;">
+    @if(!loading()){
+         <div class="widget-container" style="margin-top: 20px;">
         <div style="font-weight: bold; color: #00b4d8">Predicted Monthly Results</div>
         <div class="monthly-card-container">
             <div style="color: #344e41;">
@@ -88,11 +89,21 @@
 
     </div>
 
+    } @else {
+        <div style="display: flex; justify-content: center; align-items: center; height: 200px; width: 100%;">
+            <div class="loader">ff</div>
+        <mat-spinner></mat-spinner>
+
+        </div>
+    }
+   
+
 </div>
 <div></div>
 
 
 <div style="margin-bottom: 30px;">
-    <h2>Chart</h2>
+            <h2>Chart</h2>
     <canvas id="barChart"></canvas>
+   
 </div>

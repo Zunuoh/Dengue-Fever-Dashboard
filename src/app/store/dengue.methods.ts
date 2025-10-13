@@ -10,11 +10,12 @@ export const dengueMethods = signalStoreFeature(
     withMethods((store, apiService = inject(ApiService)) => ({
         fetchNextMonth: rxMethod<void>(
             pipe(
-                tap(() => patchState(store)),
+                tap(() => patchState(store, { loading: true })),
                 exhaustMap(() => apiService.getPredictionsForNextMonth().pipe(
                     tap((response) => {
                         patchState(store, {
-                            nextMonthPrediction: response.data
+                            nextMonthPrediction: response.data,
+                            loading: false
                         })
                     })
                 )),
@@ -25,13 +26,15 @@ export const dengueMethods = signalStoreFeature(
                 tap(() => {
                     console.log
                     patchState(store, {
+                        loading: true
                     })
                 }),
                 exhaustMap(() => apiService.getRegionFactors().pipe(
                     tap((response) => {
                         // console.log(response)
                         patchState(store, {
-                            factorsAffectingRegions: response.data
+                            factorsAffectingRegions: response.data,
+                            loading: false
                         })
                     })
                 )
@@ -43,13 +46,15 @@ export const dengueMethods = signalStoreFeature(
                 tap(() => {
                     console.log
                     patchState(store, {
+                        loading: true
                     })
                 }),
                 exhaustMap(() => apiService.getTopFiveAffectedCountries().pipe(
                     tap((response) => {
                         console.log(response)
                         patchState(store, {
-                            topFiveAffectedCountries: response
+                            topFiveAffectedCountries: response,
+                            loading: false
                         })
                     })
                 )
@@ -61,13 +66,15 @@ export const dengueMethods = signalStoreFeature(
                 tap(() => {
                     console.log
                     patchState(store, {
+                        loading: true
                     })
                 }),
                 exhaustMap(() => apiService.getTopFiveAffectedRegions().pipe(
                     tap((response) => {
                         console.log(response)
                         patchState(store, {
-                            topFiveAffectedRegions: response
+                            topFiveAffectedRegions: response,
+                            loading: false
                         })
                     })
                 )
@@ -78,13 +85,15 @@ export const dengueMethods = signalStoreFeature(
             pipe(
                 tap(() => {
                     patchState(store, {
+                        loading: true
                     })
                 }),
                 exhaustMap(() => apiService.predictNextSixMonths().pipe(
                     tap((response) => {
                         console.log(response)
                         patchState(store, {
-                            predictNextSixMonths: response
+                            predictNextSixMonths: response,
+                            loading: false
                         })
                     })
                 )
@@ -120,12 +129,14 @@ export const dengueMethods = signalStoreFeature(
             pipe(
                 tap(() => {
                     patchState(store, {
+                        loading: true
                     })
                 }),
                 exhaustMap(() => apiService.getHeatMapData().pipe(
                     tap((response) => {
                         patchState(store, {
-                            heatMapData: response.data
+                            heatMapData: response.data,
+                            loading: false
                         })
                     })
                 )
